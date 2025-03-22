@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Tree</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url('I_Love_You_GIF_Animation-1061218216.gif') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 50px;
+            font-weight: bold;
+            color: rgb(221, 98, 207);
+            text-shadow: 3px 3px 5px rgb(170, 63, 98);
+            position: absolute;
+            top: -3%;
+            right: 85%;
+        }
+
+        h3 {
+            font-size: 20px;
+            font-weight: bold;
+            color: rgb(221, 98, 207);
+            text-shadow: 3px 3px 5px rgb(170, 63, 98);
+            position: absolute;
+            top: 10%;
+            right: 30%;
+        }
+
+        .rotateImages {
+            animation: myRotate 10s linear infinite;
+        }
+
+        @keyframes myRotate {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .music-icon {
+            position: fixed;
+            z-index: 10001;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffc400 0%, #f2b9aa 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .music-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .music-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+            transition: fill 0.2s;
+        }
+
+        .music-icon:hover svg {
+            fill: #333;
+        }
+
+        audio {
+            display: none; /* Hide the audio player */
+        }
+
+        #heart-button {
+            position: absolute;
+            bottom: 200px;
+            background: pink;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #heart-button:hover {
+            background: #ff85c0;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff69b4;
+            font-size: 24px;
+            animation: fall 2s infinite;
+            user-select: none;
+        }
+        #love-letter-button {
+            background: #ff85c0;
+        }
+
+        #love-letter-button {
+            position: absolute;
+            bottom: 100px;  /* Adjusted to be just above heart rain */
+            background: pink;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        #cake-love {
+            position: absolute;
+            bottom: 20px;  /* Adjusted to be just above heart rain */
+            background: rgb(244, 45, 184);
+            color: rgb(241, 233, 238);
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(219, 64, 233, 0.1);
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh); /* Start at the top of the screen */
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh); /* Fall down to the bottom */
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>LOVE</h1>
+    <h3>
+        Happy Birthday, my love! 🎉💕 You light up my life in so many ways. I’m so grateful to have you as my partner and best friend. You are truly cherished, and I promise to love and support you always.
+    </h3>
+
+    <div class="music-icon" onclick="toggleMusic()">
+        <svg viewBox="0 0 24 24">
+            <path d="M9 17a4 4 0 100-8 4 4 0 000 8zm6-9V3l6 3-6 3zm-6-1a5 5 0 100 10 5 5 0 000-10z"></path>
+        </svg>
+    </div>
+
+    <!-- Falling Hearts Button -->
+    <button id="heart-button" onclick="startHeartRain()">Make it Rain Hearts 💗</button>
+
+    <!-- Background Music -->
+    <audio id="bg-music" autoplay loop>
+        <source src="musicc.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let audio = document.getElementById("bg-music");
+            audio.play().catch(error => {
+                console.log("Autoplay blocked, waiting for user interaction.");
+            });
+            document.addEventListener("click", function () {
+                if (audio.paused) {
+                    audio.play();
+                }
+            });
+        });
+
+        function toggleMusic() {
+            let audio = document.getElementById("bg-music");
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+
+        function startHeartRain() {
+            for (let i = 0; i < 50; i++) {
+                createFallingHeart();
+            }
+        }
+
+        function createFallingHeart() {
+            const heart = document.createElement("div");
+            heart.innerText = "❤️💗💝";
+            heart.classList.add("heart");
+            heart.style.left = Math.random() * 100 + "vw"; // Random position across screen
+            heart.style.animationDuration = 5 + Math.random() * 3 + "s"; // Random fall speed
+            document.body.appendChild(heart);
+
+            // Remove heart after falling animation
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+    </script>
+    <a href="letter.html" id="love-letter-button">Read My Love Letter</a>
+    <a href="cake.html" id="cake-love">Lets cut your cake</a>
+    <script>
+        // Function to create heart rain effect
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.innerText = "❤️‍🔥";
+            heart.style.position = "fixed";
+            heart.style.top = "-50px";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = Math.random() * 20 + 10 + "px";
+            heart.style.animation = "falling 4s linear infinite";
+            document.body.appendChild(heart);
+    
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+    
+        setInterval(createHeart, 200);
+    
+        // Falling animation for hearts
+        const style = document.createElement("style");
+        style.innerHTML = `
+            @keyframes falling {
+                0% { transform: translateY(0); opacity: 1; }
+                100% { transform: translateY(100vh); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+    
+</body>
+</html>

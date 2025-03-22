@@ -1,0 +1,40 @@
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: #fce4ec;
+    overflow: hidden;
+    margin: 0;
+    height: 100vh;
+}
+
+#heartButton {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    background: rgb(19, 14, 14);
+    color: rgb(18, 12, 12);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.heart {
+    position: fixed;
+    color: red;
+    font-size: 24px;
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+    }
+}

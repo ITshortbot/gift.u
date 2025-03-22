@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Love Letter</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ef69bc;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .open-button {
+            background-color: #ff69b4;  /* Pinkish button */
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+        }
+
+        .open-button:hover {
+            background-color: #ff1493;  /* Darker pink on hover */
+        }
+
+        #loveLetter {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #ffe4e1;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to Your Love Letter Page</h1>
+    <p>Click the button below to open your love letter!</p>
+
+    <button class="open-button" onclick="openLetter()">Open Love Letter</button>
+
+    <div id="loveLetter">
+        <h2>My Love Letter to You</h2>
+        <p>Dear Tanu mari jaan,</p>
+        <p>
+             You are the most beautiful and perfect girl in the world, and I'm so lucky to have you. On your 18th birthday, I promise to love you forever and do everything I can to make you happy. You are the diamond of my life, and I am eternally grateful for your love and support. Enjoy your special day my loveeee....!!!!!!!
+        </p>
+        <p>With all my love,</p>
+        <p><em>kukkur🐶</em></p>
+    </div>
+
+    <script>
+        function openLetter() {
+            var letterDiv = document.getElementById("loveLetter");
+            if (letterDiv.style.display === "none") {
+                letterDiv.style.display = "block";  // Show the love letter
+            } else {
+                letterDiv.style.display = "none";  // Hide the love letter if it's already open
+            }
+        }
+    </script>
+    <script>
+        // Function to create heart rain effect
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.innerText = "💌";
+            heart.style.position = "fixed";
+            heart.style.top = "-50px";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = Math.random() * 20 + 10 + "px";
+            heart.style.animation = "falling 6s linear infinite";
+            document.body.appendChild(heart);
+    
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+    
+        setInterval(createHeart, 200);
+    
+        // Falling animation for hearts
+        const style = document.createElement("style");
+        style.innerHTML = `
+            @keyframes falling {
+                0% { transform: translateY(0); opacity: 1; }
+                100% { transform: translateY(100vh); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+    
+
+</body>
+</html>
